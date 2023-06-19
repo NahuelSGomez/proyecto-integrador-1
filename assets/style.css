@@ -31,7 +31,6 @@ body {
 }
 
 span{
-    font-weight: bold;
     font-style: italic;
 }
 
@@ -159,9 +158,13 @@ nav {
 }
 
 .hero-info h1{
-    font-size: 36px;
+    font-size: 40px;
+    font-weight: 800;
 }
 
+.hero-info h1 span{
+    color: linear-gradient();
+}
 
 .hero-info p{
     font-size: 18px;
@@ -379,6 +382,7 @@ footer{
     width: 100%;
     justify-content: center;
     align-items: center;
+    background: url(./beckham.webp) no-repeat center/cover;
 }
 
 .form-login form{
@@ -386,10 +390,13 @@ footer{
     flex-direction: column;
     border: 2px solid var(--primary);
     border-radius: 10px;
-    background: rgb(20, 20, 20);
     padding: 90px;
     gap: 30px;
     margin-bottom: 20px;
+    background: linear-gradient(0deg, rgba(15, 15, 15, 0.733) 0%, rgba(63, 61, 61, 0.795) 100%);
+    backdrop-filter: blur(7px) saturate(180%);
+    -webkit-backdrop-filter: blur(7px) saturate(180%);
+    box-shadow: 0 7px 7px 0 rgb(85, 84, 84);
 }
 
 .user,
@@ -405,4 +412,15 @@ form input{
     background: var(--primary);
     border-radius: 5px;
     padding: 5px;
+}
+
+.form-bottom {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    gap: 20px;
+}
+
+.form-bottom a{
+    color: var(--primary-text);
 }
