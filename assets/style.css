@@ -191,7 +191,7 @@ nav {
 
 .Menu {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     padding: 60px 90px;
     background: rgb(28, 28, 28);
@@ -253,8 +253,9 @@ nav {
 }
 
 .about-info h2{
-    font-size: 36px;
+    font-size: 38px;
     font-weight: 800;
+    letter-spacing: 1px;
 }
 
 .about-info p{
@@ -441,6 +442,10 @@ footer{
     justify-content: center;
     align-items: center;
     background: url(./beckham.webp) no-repeat center/cover;
+}
+
+.register{
+    background: url(./nike_2004.png) no-repeat center/cover;
 }
 
 .form-login form{
