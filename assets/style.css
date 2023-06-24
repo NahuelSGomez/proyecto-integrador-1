@@ -40,7 +40,7 @@ header{
     align-items: center;
     height: 80px;
     min-width: 100%;
-    background: var(--primary);
+    background: linear-gradient(to bottom, var(--primary), var(--background));
     padding: 10px 30px;
     border-bottom: 0px solid black;
     font-size: 16px;
@@ -103,18 +103,32 @@ nav {
     position: absolute;
     top: 80px;
     right: 0;
-    padding: 50px 20px;
-    border-left: 1px solid var(--btn-color);
+    padding: 30px 20px;
+    border-left: 1px solid var(--acent);
+    box-shadow: 0px 8px 5px 2px var(--btn-color);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
     height: calc(100vh - 80px);
     overflow-y: scroll;
     display: none;
     z-index: 2;
     background: linear-gradient(to top, rgb(8, 8, 8), var(--primary));
+}
+
+.cart-item{
+    position: relative;
+    margin: 20px 0px;
+    border: 1px solid var(--btn-color);
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: -2px 5px 4px var(--btn-color);
 }
 
 .cart::-webkit-scrollbar{
@@ -123,6 +137,19 @@ nav {
 
 .cart-item img{
     width: 120px;
+    border-radius: 10px;
+}
+
+.item-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.item-handler span{
+    border: 1px solid var(--btn-color);
+    padding: 2px 7px;
     border-radius: 5px;
 }
 
@@ -283,6 +310,7 @@ nav {
     align-items: center;
     flex-direction: column;
     background: rgb(78, 77, 77);
+    border: 2px solid rgba(50, 50, 50, 0.493);
     padding: 30px 15px;
     gap: 30px;
     border-radius: 15px;
@@ -438,8 +466,10 @@ form input{
     justify-content: center;
     align-items: center;
     background: var(--primary);
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 5px;
+    margin-top: 10px;
+    color: var(--primary-text);
 }
 
 .form-bottom {
@@ -451,4 +481,12 @@ form input{
 
 .form-bottom a{
     color: var(--primary-text);
+}
+
+.user label{
+    letter-spacing: 1px;
+}
+
+.password label{
+    letter-spacing: 1px;
 }
