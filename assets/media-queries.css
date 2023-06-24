@@ -27,12 +27,13 @@
         border-radius: 0px 0px 10px 10px;
         background: linear-gradient(to bottom, rgb(8, 8, 8), var(--primary));
         display: none;
-        box-shadow: 0px 6px 4px 2px var(--btn-color);
+        box-shadow: 0px 3px 3px 1px var(--btn-color);
     }
 
     .nav-bar a{
         font-size: 16px;
         width: 120px;
+        letter-spacing: 1px;
     }
 
     .bars-menu span{
@@ -58,6 +59,14 @@
         height: fit-content;
     }
 
+    .hero-info h1{
+        font-size: 50px;
+    }
+
+    .hero-info p{
+        font-size: 24px;
+    }
+
     .hero-info{
         display: flex;
         flex-flow: column;
@@ -80,9 +89,13 @@
     }
 }
 
-@media (max-width: 460px) {
-    .card-container{
+@media (max-width: 560px) {
+    .card-text{
         max-width: 80%;
+    }
+
+    .contact-bottom span{
+        display: none;
     }
 
     .form{

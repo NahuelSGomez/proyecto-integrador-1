@@ -104,7 +104,6 @@ nav {
     top: 80px;
     right: 0;
     padding: 30px 20px;
-    border-left: 1px solid var(--acent);
     box-shadow: 0px 8px 5px 2px var(--btn-color);
     display: flex;
     flex-direction: column;
@@ -128,7 +127,7 @@ nav {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    box-shadow: -2px 5px 4px var(--btn-color);
+    box-shadow: -2px 0px 4px var(--btn-color);
 }
 
 .cart::-webkit-scrollbar{
@@ -192,7 +191,7 @@ nav {
 
 .Menu {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 60px 90px;
     background: rgb(28, 28, 28);
@@ -209,7 +208,7 @@ nav {
 }
 
 .hero-info h1{
-    font-size: 42px;
+    font-size: 40px;
     font-weight: 900;
 }
 
@@ -251,12 +250,16 @@ nav {
     padding: 10px;
     max-width: 1200px;
     gap: 20px;
-    font-size: 18px;
 }
 
 .about-info h2{
-    font-size: 2em;
+    font-size: 36px;
     font-weight: 800;
+}
+
+.about-info p{
+    font-size: 20px;
+    width: 90%;
 }
 
 .about-img {
@@ -271,7 +274,7 @@ nav {
 
 .about-img img{
     display: flex;
-    width: 500px;
+    width: 600px;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -279,7 +282,7 @@ nav {
 }
 
 .about-img p{
-    font-size: 18px;
+    font-size: 22px;
 }
 
 .about-img p:first-of-type{
@@ -292,7 +295,6 @@ nav {
     justify-content: center;
     align-items: center;
     max-width: 1300px;
-    border-bottom: 1px solid gray;
 }
 
 .products-container{
@@ -309,7 +311,7 @@ nav {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: rgb(78, 77, 77);
+    background: radial-gradient(rgb(78, 77, 77), var(--background));
     border: 2px solid rgba(50, 50, 50, 0.493);
     padding: 30px 15px;
     gap: 30px;
@@ -367,15 +369,16 @@ nav {
 .Contacto{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: stretch;
     text-align: center;
-    padding: 50px;
-    gap: 30px;
+    padding: 80px 50px;
+    gap: 20px;
 }
 
 .Contacto i{
     font-size: 24px;
+    color: var(--primary-text);
 }
 
 .contact-title{
@@ -384,7 +387,7 @@ nav {
 
 .contact-bottom{
     display: flex;
-    gap: 50px;
+    gap: 30px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -398,7 +401,6 @@ nav {
     align-items: start;
     padding: 10px;
     gap: 30px;
-    wid
 }
 
 .contact-message{
@@ -411,6 +413,7 @@ nav {
     gap: 20px;
 }
 
+
 #message{
     display: flex;
     justify-content: center;
@@ -418,7 +421,7 @@ nav {
     background: var(--primary);
     border-radius: 5px;
     padding: 5px;
-    width: 300px;
+    width: 100%;
 }
 
 footer{
@@ -426,7 +429,6 @@ footer{
     justify-content: center;
     align-items: center;
     height: 70px;
-    border-top: 1px solid rgb(68, 64, 64);
 }
 
 
