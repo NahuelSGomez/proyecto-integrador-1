@@ -76,9 +76,12 @@
         padding: 30px 50px;
     }
 
-    .hero-info>.btn{
-        max-width: inherit;
+    .hero-info a {
+        width: 70%;
         margin: auto 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .about-img img{
@@ -106,6 +109,10 @@
 }
 
 @media (max-width: 560px) {
+    .hero-info h1{
+        font-size: 40px;
+    }
+    
     .card-text{
         max-width: 80%;
     }
