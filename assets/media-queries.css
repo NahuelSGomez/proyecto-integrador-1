@@ -73,8 +73,21 @@
         padding: 30px 50px;
     }
 
+    .hero-info>.btn{
+        max-width: inherit;
+        margin: auto 60px;
+    }
+
     .about-img img{
         max-width: 70%;
+    }
+
+    .card-text-title{
+        font-size: 20px;
+    }
+
+    .card-container{
+        gap: 10px;
     }
 
     .contact-bottom{

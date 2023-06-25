@@ -160,7 +160,6 @@ nav {
     background: var(--btn-color);
     padding: 8px 20px;
     border-radius: 9px;
-    margin: 10px;
     max-width: 100px;
     border: 0px solid var(--acent);
     color: var(--primary-text);
@@ -171,9 +170,8 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px 10px;
     max-width: 80px;
-    font-size: .8em;
+    font-size: 1.2em;
 }
 
 .btn-secondary{
@@ -229,13 +227,13 @@ nav {
     align-items: center;
     width: 350px;
     border-radius: 5px;
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 15px 15px 15px black;
 }
 
 .Acerca{
     display: flex;
     flex-direction: column;
-    background: #29656949;
+    background: #1e3d3f49;
     padding: 50px;
     gap: 20px;
     background: linear-gradient(to bottom, rgb(29, 28, 28), var(--background));
@@ -279,11 +277,15 @@ nav {
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 15px 15px 15px black;
 }
 
 .about-img p{
     font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
 }
 
 .about-img p:first-of-type{
@@ -482,6 +484,7 @@ form input{
 .form-bottom {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: 10px;
     gap: 20px;
 }
@@ -497,3 +500,4 @@ form input{
 .password label{
     letter-spacing: 1px;
 }
+
