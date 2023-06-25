@@ -1,3 +1,5 @@
+/*hovers*/
+
 .btn:hover{
     background: rgb(226, 184, 59);
     /*background: var(--primary-text);*/
@@ -13,35 +15,22 @@
     transition: all .3s ease-in-out;
 }
 
-.nav-bar li {
-    position: relative;
-    padding: 0;
-}
-
-.nav-bar li a::after {
-    content: "";
-    height: 2px;
-    width: 100%;
-    background: var(--primary-text);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: bottom left;
-    transition: transform .1s ease;
-    box-shadow: 2px 2px 2px var(--primary-text);*/
-}
-
-.nav-bar li a:hover::after{
-    transform-origin: bottom right;
-    transform: scaleX(1);
-}
-
-#cart-toggle:checked ~ .cart{
-    transition: translateX(80px) .3s ease .2s;
-}
-
 .card-container:hover{
     box-shadow: 10px 10px 10px var(--primary);
     transition: all .2s ease;
+}
+
+.nav-bar li a:hover{
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px var(--primary-text);
+    transition: all .3s ease-in-out;
+}
+
+.quantity-handler:hover {
+    box-shadow: 2px 2px 2px var(--btn-color);
+}
+
+.cart-toggle-container i:hover{
+    font-size: 28px;
 }

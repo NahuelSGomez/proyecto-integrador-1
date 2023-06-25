@@ -108,26 +108,27 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
     height: calc(100vh - 80px);
     overflow-y: scroll;
-    display: none;
+    /*display: none;*/
     z-index: 2;
     background: linear-gradient(to top, rgb(8, 8, 8), var(--primary));
+    transform: translate(200%);
+    transition: all .5s ease-in-out;
 }
 
 .cart-item{
     position: relative;
-    margin: 20px 0px;
+    margin: 10px 0px;
     border: 1px solid var(--btn-color);
-    padding: 30px;
+    padding: 20px;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    box-shadow: -2px 0px 4px var(--btn-color);
 }
 
 .cart::-webkit-scrollbar{
@@ -153,14 +154,15 @@ nav {
 }
 
 #cart-toggle:checked + .cart{
-    display: flex;
+    transform: translate(0%);
+    transition: all .5s ease-in-out;
 }
 
 .btn{
     background: var(--btn-color);
     padding: 8px 20px;
     border-radius: 9px;
-    max-width: 100px;
+    /*max-width: 100px;*/
     border: 0px solid var(--acent);
     color: var(--primary-text);
     cursor: pointer;
@@ -187,7 +189,7 @@ nav {
     color: var(--primary-text);
 }
 
-.Menu {
+.Inicio {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -217,6 +219,10 @@ nav {
     -webkit-background-clip: text;
 }
 
+.hero-info a{
+    width: 100px;
+}
+
 .hero-info p{
     font-size: 20px;
 }
@@ -230,7 +236,7 @@ nav {
     box-shadow: 15px 15px 15px black;
 }
 
-.Acerca{
+.Nosotros{
     display: flex;
     flex-direction: column;
     background: #1e3d3f49;
@@ -425,6 +431,7 @@ nav {
     border-radius: 5px;
     padding: 5px;
     width: 100%;
+    color: var(--primary-text);
 }
 
 footer{
