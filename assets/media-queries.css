@@ -1,22 +1,12 @@
 @media (max-width: 850px){
-    .hero-img img {
-        display: none;
-    }
-
-    .hero-info{
-        text-align: center;
-    }
-
-    .card-container{
-        max-width: 300px;
-    }
+    /*navbar*/
 
     .nav-bar ul{
         position: absolute;
         top: 80px;
-        left: 5%;
-        right: 5%;
-        width: 90%;
+        left: 15%;
+        right: 15%;
+        width: 70%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -28,7 +18,7 @@
         background: linear-gradient(to bottom, rgb(8, 8, 8), var(--primary));
         /*display: none;*/
         box-shadow: 0px 3px 3px 1px var(--btn-color);
-        transform: translate(200%);
+        transform: translateY(-200%);
         transition: all .5s ease-in-out;
     }
 
@@ -53,13 +43,40 @@
     }
 
     #menu-toggle:checked + .nav-bar{
-        transform: translate(0%);
+        display: flex;
+        transform: translateY(0%);
         transition: all .5s ease-in-out;
     }
 
-    .Menu{
+    /*Inicio*/
+
+    .Inicio{
         display: flex;
         height: fit-content;
+        justify-content: flex-end;
+        align-items: center;
+        
+        padding: 40px 20px;
+    }
+
+    .hero-info{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        flex-flow: column;
+        max-width: 90%;
+    }
+
+    .hero-info a {
+        width: 70%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .hero-img img {
+        display: none;
     }
 
     .hero-info h1{
@@ -70,20 +87,8 @@
         font-size: 24px;
     }
 
-    .hero-info{
-        display: flex;
-        flex-flow: column;
-        padding: 30px 50px;
-    }
-
-    .hero-info a {
-        width: 70%;
-        margin: auto 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
+    /*Acerca*/
+    
     .about-img img{
         max-width: 70%;
     }
@@ -94,6 +99,7 @@
 
     .card-container{
         gap: 10px;
+        max-width: 300px;
     }
 
     .contact-bottom{
@@ -112,7 +118,15 @@
     .hero-info h1{
         font-size: 40px;
     }
+
+    .hero-info p{
+        font-size: 20px;
+    }
     
+    .about-img p{
+        font-size: 20px;
+    }
+
     .card-text{
         max-width: 80%;
     }
