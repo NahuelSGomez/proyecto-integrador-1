@@ -12,6 +12,8 @@ const nameInput = document.getElementById("name");
 const lastNameInput = document.getElementById("lastName");
 const emailInput = document.getElementById("email");
 const message = document.getElementById("message");
+const confirmedMsg = document.getElementById("mensaje-confirmacion");
+
 
 
 //funciones auxiliares

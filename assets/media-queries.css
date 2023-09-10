@@ -1,3 +1,13 @@
+@media (max-width: 1100px){
+    .hero-info h1{
+        font-size: 46px;
+    }
+
+    .hero-info p{
+        font-size: 22px;
+    }
+}
+
 @media (max-width: 850px){
     /*navbar*/
 
@@ -79,11 +89,11 @@
     }
 
     .hero-info h1{
-        font-size: 50px;
+        font-size: 48px;
     }
 
     .hero-info p{
-        font-size: 26px;
+        font-size: 24px;
     }
 
     /*Acerca*/

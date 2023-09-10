@@ -192,7 +192,7 @@ nav {
 .Inicio {
     display: flex;
     align-items: center;
-    padding: 50px 40px;
+    padding: 50px 0px 50px 40px;
     background: rgb(28, 28, 28);
     width: 100%;
     gap: 20px;
@@ -211,7 +211,7 @@ nav {
     /* font-family: "Renegade Pursuit"; */
     font-size: 50px;
     font-weight: 900;
-    width: 150%;
+    width: 100%;
 }
 
 .hero-info h1 span{
