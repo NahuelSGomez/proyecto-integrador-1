@@ -53,10 +53,9 @@
     .Inicio{
         display: flex;
         height: fit-content;
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
-        
-        padding: 40px 20px;
+        padding: 70px 35px;
     }
 
     .hero-info{
@@ -68,7 +67,7 @@
     }
 
     .hero-info a {
-        width: 70%;
+        width: 50%;
         margin: auto;
         display: flex;
         justify-content: center;
@@ -84,7 +83,7 @@
     }
 
     .hero-info p{
-        font-size: 24px;
+        font-size: 26px;
     }
 
     /*Acerca*/

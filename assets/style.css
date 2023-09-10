@@ -6,6 +6,11 @@
     text-decoration: none;
 }
 
+@font-face{
+    font-family: "Renegade Pursuit";
+    src: url(/assets/Renegade\ Pursuit.otf);
+}
+
 :root{
     /*option a*/
     --primary: rgb(51,51,51);
@@ -14,12 +19,6 @@
     --background: rgb(0,0,0);
     --acent: rgb(0,51,102);
 
-    /*option b
-    --primary: rgb(255,255,255);
-    --secondary: rgb(204,204,204);
-    --text: rgb(0,0,0);
-    --acent: rgb(204,0,0);
-    */
 }
 
 html, body {
@@ -192,12 +191,10 @@ nav {
 
 .Inicio {
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 60px 90px;
+    padding: 50px 40px;
     background: rgb(28, 28, 28);
     width: 100%;
-    height: 70vh;
     gap: 20px;
 }
 
@@ -206,11 +203,15 @@ nav {
     flex-direction: column;
     justify-content: center;
     gap: 20px;
+    width: 100%;
 }
 
 .hero-info h1{
-    font-size: 40px;
+    z-index: 1;
+    /* font-family: "Renegade Pursuit"; */
+    font-size: 50px;
     font-weight: 900;
+    width: 150%;
 }
 
 .hero-info h1 span{
@@ -225,16 +226,20 @@ nav {
 }
 
 .hero-info p{
-    font-size: 20px;
+    font-size: 24px;
+}
+
+.hero-img{
+    display: flex;
+    justify-content: end;
 }
 
 .hero-img img{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 350px;
-    border-radius: 5px;
-    box-shadow: 15px 15px 15px black;
+    justify-content: end;
+    align-items: flex-end;
+    width: 80%;
+    filter: drop-shadow(15px 15px 15px black);
 }
 
 .Nosotros{
@@ -258,14 +263,14 @@ nav {
 }
 
 .about-info h2{
-    font-size: 38px;
+    font-size: 44px;
     font-weight: 800;
     letter-spacing: 1px;
 }
 
 .about-info p{
-    font-size: 20px;
-    width: 90%;
+    font-size: 24px;
+    width: 80%;
 }
 
 .about-img {
@@ -274,13 +279,13 @@ nav {
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 20px;
+    /* gap: 20px; */
     padding: 30px 0px;
 }
 
 .about-img img{
     display: flex;
-    width: 600px;
+    width: 500px;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -288,11 +293,11 @@ nav {
 }
 
 .about-img p{
-    font-size: 22px;
+    font-size: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 80%;
 }
 
 .about-img p:first-of-type{
@@ -306,6 +311,32 @@ nav {
     align-items: center;
     max-width: 1300px;
 }
+
+.filter{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 1.2em;
+    background: transparent;
+}
+
+.categories{
+    display: flex;
+    gap: 15px;
+}
+
+.category{
+    background: transparent;
+    padding: 10px;
+    width: auto;
+}    
+
+.active{
+    background-color: var(--btn-color);
+    color: var(--background);
+}    
 
 .products-container{
     display: flex;
@@ -354,6 +385,7 @@ nav {
     text-align: center;
     height: 60px;
     font-size: 24px;
+    width: auto;
 }
 
 .card-text-btn{
@@ -376,6 +408,7 @@ nav {
     width: 100%;
 }
 
+
 .Contacto{
     display: flex;
     flex-direction: column;
@@ -397,6 +430,7 @@ nav {
 
 .contact-bottom{
     display: flex;
+    flex-direction: column;
     gap: 30px;
     justify-content: center;
     align-items: center;
@@ -405,12 +439,11 @@ nav {
 
 .contact-info{
     display: flex;
-    flex-direction: column;
     text-align: center;
     justify-content: center;
     align-items: start;
-    padding: 10px;
-    gap: 30px;
+    padding: 20px;
+    gap: 60px;
 }
 
 .contact-message{
@@ -418,13 +451,15 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px;
-    padding: 10px;
-    gap: 20px;
+    padding: 5px;
+    gap: 10px;
 }
 
 
-#message{
+#message,
+#nombre,
+#apellido,
+#email {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -433,6 +468,15 @@ nav {
     padding: 5px;
     width: 100%;
     color: var(--primary-text);
+}
+
+/* estilos para mensajes de error y exito en contacto */
+.showError{
+    border-color: red;
+}
+
+.showSucces{
+    border-color: green;
 }
 
 footer{
@@ -451,11 +495,11 @@ footer{
     width: 100%;
     justify-content: center;
     align-items: center;
-    background: url(./beckham.webp) no-repeat center/cover;
+    background: url(../img/beckham.webp) no-repeat center/cover;
 }
 
 .register{
-    background: url(./nike_2004.png) no-repeat center/cover;
+    background: url(../img/nike_2004.png) no-repeat center/cover;
 }
 
 .form-login form{
