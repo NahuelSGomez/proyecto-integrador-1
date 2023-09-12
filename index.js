@@ -98,7 +98,7 @@ const changeBtnActiveState = (selectedCategory) =>{
             return;
         }
         categoryBtn.classList.add("active");
-    })
+    });
 };
 
 const setShowMoreVisibility = () => {
@@ -112,23 +112,114 @@ const isInactiveFilter = (element) =>{
     return ( element.classList.contains("category") && !element.classList.contains("active"));
 };
 
-//obtengo el mensaje que dejan en contacto
-const msg = JSON.parse(localStorage.getItem("msg")) || [];
+//obtengo la info que dejan en contacto
+let contactInfo = JSON.parse(localStorage.getItem("contactInfo")) || [];
 
-//funcion para hacer persistir el mensaje en local storage
+//funcion para hacer persistir la info en local storage
 const saveToLocalStorage = () =>{
-    localStorage.setItem("msg", JSON.stringify(msg));
+    localStorage.setItem("contactInfo", JSON.stringify(contactInfo));
 };
 
-const validateMsg = (e) =>{
-    // e.preventDefault();
-    // return msg;
+
+const isEmpty = (input) => {
+    return !input.value.trim().length;
 };
+
+const isEmailValid = (input) => {
+    const re = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,4})+$/;
+    
+    return re.test(input.value.trim());
+};
+
+const showError = (input, message) => {
+    const formField = input.parentElement;
+    formField.classList.remove("success");
+    formField.classList.add("error");
+    const error = formField.getElementById("error");
+    error.style.display = "block";
+    error.textContent = message;
+};
+    
+/**
+* Función para mostrar un input como valido.
+*/
+const showSuccess = (input) => {
+    const formField = input.parentElement;
+    formField.classList.remove("error");
+    formField.classList.add("success");
+    const error = formField.getElementById("error");
+    error.textContent = "";
+};
+
+const checkTextInput = (input) => {
+    
+    let valid = false;
+
+    if (isEmpty(input)) {
+        showError(input, "Este campo es obligatorio");
+        return;
+    }
+    
+    showSuccess(input);
+    valid = true;
+    return valid;
+};
+
+const checkEmail = (input) => {
+    
+    let valid = false;
+    if (isEmpty(input)) {
+        showError(input, "El email es obligatorio");
+        return;
+    }
+    if (!isEmailValid(input)) {
+        showError(input, "El email no es válido");
+        return;
+    }
+    
+    showSuccess(input);
+    valid = true;
+    return valid;
+};
+
+
+//funcion general de validacion de datos y contacto
+const contact = (e) =>{
+    e.preventDefault();
+    
+    let isNameValid = checkTextInput(nameInput);
+    let isLastNameValid = checkTextInput(lastNameInput);
+    let isEmailValid = checkEmail(emailInput);
+    let isMessageValid = checkTextInput(message);
+
+    let isValidForm = 
+    isNameValid &&
+    isLastNameValid &&
+    isEmailValid &&
+    isMessageValid;
+
+    if (isValidForm) {
+        contactInfo.push({
+            name: nameInput.value, 
+            lastName: lastNameInput.value, 
+            email: emailInput.value, 
+            message: message.value, 
+        });
+        saveToLocalStorage(contactInfo);
+        alert ("Te has registrado con éxito");
+    };
+    form.reset();
+};
+
 
 const init = () => {
     renderProducts(appState.products[0]);
     showMoreproducts.addEventListener("click", loadProducts);
     categoriesContainer.addEventListener("click", renderByCategory);
-    form.addEventListener("submit", validateMsg);
+    form.addEventListener("submit", contact);
+    nameInput.addEventListener("input", () => checkTextInput(nameInput));
+    lastNameInput.addEventListener("input", () => checkTextInput(lastNameInput));
+    emailInput.addEventListener("input", () => checkEmail(emailInput));
+    message.addEventListener("input", () => checkTextInput(message));
 };
 init();

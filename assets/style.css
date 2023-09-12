@@ -457,8 +457,8 @@ nav {
 
 
 #message,
-#nombre,
-#apellido,
+#name,
+#lastName,
 #email {
     display: flex;
     justify-content: center;
@@ -471,11 +471,11 @@ nav {
 }
 
 /* estilos para mensajes de error y exito en contacto */
-.showError{
+.Error{
     border-color: red;
 }
 
-.showSucces{
+.Success{
     border-color: green;
 }
 
