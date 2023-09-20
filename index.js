@@ -19,8 +19,11 @@ const menuBtn = document.querySelector(".bars-menu");
 const navBarList = document.querySelector(".nav-bar");
 const cartBtn = document.querySelector(".cart-toggle");
 const cartMenu = document.querySelector(".cart");
-const main = document.querySelector(".main")
+const main = document.querySelector(".main");
+const addBtn = document.querySelector(".btn-small");
 const productsCart = document.querySelector(".cart-container");
+
+const total = document.querySelector(".total");
 
 
 
@@ -29,7 +32,6 @@ const createProductTemplate = (product) =>{
     const { id, name, price, img, altName, category } = product;
     
     return `
-
         <div class="card-container">
             <div class="card-img">
                 <img src=${img} alt=${altName}>
@@ -48,7 +50,7 @@ const createProductTemplate = (product) =>{
                     ><i class="fa-solid fa-cart-shopping"></i>
                     </button>
                     <a href="#" class="btn-secondary">Más info</a>
-                    <span>${price}</span>
+                    <span>U$D ${price}</span>
                 </div>
             </div>
     </div>
@@ -125,6 +127,14 @@ const setShowMoreVisibility = () => {
 
 //obtengo la info que dejan en contacto
 let contactInfo = JSON.parse(localStorage.getItem("contactInfo")) || [];
+
+//obtengo la info de carrito
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+//guardo datos en LS
+const saveCart = () => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+};
 
 //funcion para hacer persistir la info en local storage
 const saveToLocalStorage = () =>{
@@ -277,13 +287,13 @@ const renderCart = () =>{
 };
 
 const createCartProductTemplate = (cartProduct) =>{
-    const{ id, name, price, img, quantity } = cartProduct;
+    const { id, name, price, img, quantity } = cartProduct;
     return `
         <div class="cart-item">
             <img src="${img}" alt="${name}">
             <div class="item-info">
                 <h3 class="item-title">${name}</h3>
-                <span class="item-price">${price}</span>
+                <span class="item-price">U$D ${price}</span>
             </div>
             <div class="item-handler">
                 <span class="quantity-handler dowm" data-id=${id}>-</span>
@@ -293,6 +303,64 @@ const createCartProductTemplate = (cartProduct) =>{
         </div>
     `
 };
+
+const showCartTotal = () =>{
+    total.innerHTML = `U$D ${getCartTotal()}`;
+};
+
+const getCartTotal = () =>{
+    return cartProduct.reduce((acc, cur) => acc + cur.price);
+};
+
+const addProduct = (e) =>{
+    if(!e.target.classList.contains("btn-small")){return};
+
+    const product = createProductData(e.target.dataset);
+
+    // si existe el producto en el carrito, retorno
+    if(isExistingCartProduct(product)){
+        return
+    };
+    
+    //sino, lo agrego
+    createCartProductTemplate(product);
+    //muestro mensaje de exito
+    showSuccessCart("El producto se agregó al carrito");
+    //actualizo el carrito
+    updateCartState();
+};
+
+const createProductData = (product) =>{
+    const { id, name, price, img } = product;
+    return { id, name, price, img }
+};
+
+const isExistingCartProduct = (product) => {
+    return cart.find((item) => item.id === product.id);
+};
+
+const addUnitToProduct = (product) => {
+    cart = cart.map((cartProduct) =>
+        cartProduct.id === product.id
+            ? { ...cartProduct, quantity: cartProduct.quantity + 1 }
+            : cartProduct
+    );
+};
+
+const updateCartState = () =>{
+    //guardar datos en LS
+    saveCart();
+    //renderizo el carrito
+    renderCart();
+    //muestro el total de la compra en precio
+    showCartTotal();
+
+    
+
+};
+
+
+
 
 
 const init = () => {
