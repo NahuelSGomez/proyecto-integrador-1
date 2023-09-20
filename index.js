@@ -1,7 +1,7 @@
 // capturo elementos
-const filters = document.querySelectorAll(".categories");
+// const filters = document.querySelectorAll(".categories");
 const productsContainer = document.querySelector(".products-container");
-const showMoreproducts = document.querySelector(".add-load");
+const showMoreBtn = document.querySelector(".add-load");
 
 const categoriesContainer = document.querySelector(".categories");
 const categoriesList = document.querySelectorAll(".category");
@@ -13,6 +13,13 @@ const lastNameInput = document.getElementById("lastName");
 const emailInput = document.getElementById("email");
 const message = document.getElementById("message");
 const confirmedMsg = document.getElementById("mensaje-confirmacion");
+
+//capturo elementos del carrito y menu hamburguesa
+const menuBtn = document.querySelector(".bars-menu");
+const navBarList = document.querySelector(".nav-bar");
+const cartBtn = document.querySelector(".cart-toggle");
+const cartMenu = document.querySelector(".cart");
+const productsCart = document.querySelector(".cart-container");
 
 
 
@@ -32,10 +39,11 @@ const createProductTemplate = (product) =>{
                 </div>
                 <div class="card-text-btn">
                     <button class="btn btn-small"
-                    data-id=${id}
-                    data-price=${price}
-                    data-name=${name}
-                    data-img=${img}
+                    data-id='${id}'
+                    data-price='${price}'
+                    data-name='${name}'
+                    data-img='${img}'
+                    data-category='${category}'
                     ><i class="fa-solid fa-cart-shopping"></i>
                     </button>
                     <a href="#" class="btn-secondary">Más info</a>
@@ -53,7 +61,7 @@ const loadProducts = () =>{
     renderProducts(products[currentProductsIndex]);
 
     if(appState.currentProductsIndex === appState.productsLimit - 1){
-        showMoreproducts.style.display = "none";
+        showMoreBtn.style.display = "none";
     }
 };
 
@@ -84,6 +92,10 @@ const renderFilteredProducts = () => {
     renderProducts(filteredProducts);
 };
 
+const isInactiveFilter = (element) =>{
+    return ( element.classList.contains("category") && !element.classList.contains("active"));
+};
+
 const changeFilterState = (btn) => {
     appState.activeFilter = btn.dataset.category;
     changeBtnActiveState(appState.activeFilter);
@@ -103,14 +115,12 @@ const changeBtnActiveState = (selectedCategory) =>{
 
 const setShowMoreVisibility = () => {
     if(!appState.activeFilter){
-        showMoreproducts.style.display = "none";
+        showMoreBtn.style.display = "block";
+        return;
     }
-    showMoreproducts.style.display = "block";
+    showMoreBtn.style.display = "none";
 };
 
-const isInactiveFilter = (element) =>{
-    return ( element.classList.contains("category") && !element.classList.contains("active"));
-};
 
 //obtengo la info que dejan en contacto
 let contactInfo = JSON.parse(localStorage.getItem("contactInfo")) || [];
@@ -135,7 +145,7 @@ const showError = (input, message) => {
     const formField = input.parentElement;
     formField.classList.remove("success");
     formField.classList.add("error");
-    const error = formField.getElementById("error");
+    const error = formField.querySelector(".error");
     error.style.display = "block";
     error.textContent = message;
 };
@@ -147,7 +157,7 @@ const showSuccess = (input) => {
     const formField = input.parentElement;
     formField.classList.remove("error");
     formField.classList.add("success");
-    const error = formField.getElementById("error");
+    const error = formField.querySelector(".error");
     error.textContent = "";
 };
 
@@ -206,20 +216,99 @@ const contact = (e) =>{
             message: message.value, 
         });
         saveToLocalStorage(contactInfo);
-        alert ("Te has registrado con éxito");
+        alert ("Has enviado tu mensaje con éxito");
     };
     form.reset();
+};
+
+//funciones del carrito
+const toggleCart = () => {
+    cartMenu.classList.toggle("open-cart");
+
+    if(navBarList.classList.contains("open-menu")){
+        navBarList.classList.remove("open-menu");
+        return;
+    }
+};
+
+const toggleMenu = () =>{
+    navBarList.classList.toggle("open-menu");
+
+    if(cartMenu.classList.contains("open-cart")){
+        cartMenu.classList.remove("open-cart");
+        return;
+    }
+};
+
+const closeOnScroll = () => {
+    if (!navBarList.classList.contains("open-menu") && !cartMenu.classList.contains("open-cart")){
+        return
+    };
+    navBarList.classList.remove("open-menu");
+    cartMenu.classList.remove("open-cart");
+};
+
+const closeOnClick = (e) =>{
+    if(!e.target.classList.contains("navbar-link")){
+        return
+    };
+    navBarList.classList.remove("open-menu");
+};
+
+const closeOnMainClick = (e) =>{
+    if(!e.target.classList.contains("main")){
+        return
+    };
+    navBarList.classList.toggle("open-menu");
+    cartMenu.classList.toggle("open-cart");
+};
+
+//SEGUIR ACA
+
+const renderCart = () =>{
+    if(!cartMenu.length){
+        productsCart.innerHTML = `
+        <p>No hay productos en el carrito</p>
+        `;
+        return;
+    }
+    productsCart.innerHTML = cart.map(createCartProductTemplate).join("");
+};
+
+const createCartProductTemplate = (cartProduct) =>{
+    const{ id, name, price, img, quantity } = cartProduct;
+    return `
+        <div class="cart-item">
+            <img src="${img}" alt="${name}">
+            <div class="item-info">
+                <h3 class="item-title">${name}</h3>
+                <span class="item-price">${price}</span>
+            </div>
+            <div class="item-handler">
+                <span class="quantity-handler dowm" data-id=${id}>-</span>
+                <span class="item-quantity">${quantity}</span>
+                <span class="quantity-handler up" data-id=${id}>+</span>
+            </div>
+        </div>
+    `
 };
 
 
 const init = () => {
     renderProducts(appState.products[0]);
-    showMoreproducts.addEventListener("click", loadProducts);
+    showMoreBtn.addEventListener("click", loadProducts);
     categoriesContainer.addEventListener("click", renderByCategory);
     form.addEventListener("submit", contact);
     nameInput.addEventListener("input", () => checkTextInput(nameInput));
     lastNameInput.addEventListener("input", () => checkTextInput(lastNameInput));
     emailInput.addEventListener("input", () => checkEmail(emailInput));
     message.addEventListener("input", () => checkTextInput(message));
+    cartBtn.addEventListener("click", toggleCart);
+    menuBtn.addEventListener("click", toggleMenu);
+    window.addEventListener("scroll", closeOnScroll);
+    navBarList.addEventListener("click", closeOnClick);
+    document.addEventListener("click", closeOnMainClick);
+    document.addEventListener("DOMContentLoaded", renderCart);
+    document.addEventListener("DOMContentLoaded", showCartTotal);
 };
 init();

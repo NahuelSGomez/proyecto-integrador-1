@@ -11,7 +11,7 @@
 .btn-secondary:hover{
     background: var(--btn-color);
     border: 1px solid var(--primary-text);
-    box-shadow: 2px 2px 2px var(--primary-text);
+    /* box-shadow: 2px 2px 2px var(--primary-text); */
     transition: all .3s ease-in-out;
 }
 
@@ -20,17 +20,25 @@
     transition: all .2s ease;
 }
 
-.nav-bar li a:hover{
+/* .nav-bar:hover a{
+    filter: blur(0px);
+} */
+
+.nav-bar a:hover{
+    filter: drop-shadow(5px 3px 2px var(--primary-text));
+}
+
+/* .nav-bar li a:hover{
     padding: 10px;
     border-radius: 10px;
     box-shadow: 2px 2px 2px var(--primary-text);
     transition: all .3s ease-in-out;
-}
+} */
 
 .quantity-handler:hover {
     box-shadow: 2px 2px 2px var(--btn-color);
 }
 
-.cart-toggle-container i:hover{
+.cart-toggle:hover{
     font-size: 28px;
 }
