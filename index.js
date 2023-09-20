@@ -19,6 +19,7 @@ const menuBtn = document.querySelector(".bars-menu");
 const navBarList = document.querySelector(".nav-bar");
 const cartBtn = document.querySelector(".cart-toggle");
 const cartMenu = document.querySelector(".cart");
+const main = document.querySelector(".main")
 const productsCart = document.querySelector(".cart-container");
 
 
@@ -256,11 +257,11 @@ const closeOnClick = (e) =>{
 };
 
 const closeOnMainClick = (e) =>{
-    if(!e.target.classList.contains("main")){
+    if(e.target.classList.contains("main")){
         return
     };
-    navBarList.classList.toggle("open-menu");
-    cartMenu.classList.toggle("open-cart");
+    navBarList.classList.remove("open-menu");
+    cartMenu.classList.remove("open-cart");
 };
 
 //SEGUIR ACA
@@ -307,7 +308,7 @@ const init = () => {
     menuBtn.addEventListener("click", toggleMenu);
     window.addEventListener("scroll", closeOnScroll);
     navBarList.addEventListener("click", closeOnClick);
-    document.addEventListener("click", closeOnMainClick);
+    main.addEventListener("click", closeOnMainClick);
     document.addEventListener("DOMContentLoaded", renderCart);
     document.addEventListener("DOMContentLoaded", showCartTotal);
 };
