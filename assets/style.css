@@ -94,7 +94,7 @@ nav {
     position: absolute;
     top: 80px;
     right: 0;
-    padding: 30px 20px;
+    padding: 20px 20px;
     box-shadow: 0px 8px 5px 2px var(--btn-color);
     display: flex;
     flex-direction: column;
@@ -113,25 +113,30 @@ nav {
     width: 80%;
 }
 
-/* .cart-item{
+.cart-container{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.cart-item{
     position: relative;
-    margin: 10px 0px;
+    margin: 3px 0px;
     border: 1px solid var(--btn-color);
-    padding: 20px;
+    padding: 10px;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-} */
+}
 
 .cart::-webkit-scrollbar{
     display: none;
 }
 
-/* .cart-item img{
-    width: 120px;
+.cart-item img{
+    width: 100px;
     border-radius: 10px;
 }
 
@@ -142,11 +147,18 @@ nav {
     gap: 5px;
 }
 
+.item-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .item-handler span{
     border: 1px solid var(--btn-color);
     padding: 2px 7px;
     border-radius: 5px;
-} */
+}
 
 /* para copiar y darle funcionalidad en js */
 .open-cart{
@@ -192,6 +204,7 @@ nav {
     padding: 10px;
     font-size: 12px;
     color: var(--primary-text);
+    cursor: pointer;
 }
 
 .Inicio {

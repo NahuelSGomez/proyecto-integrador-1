@@ -1,5 +1,4 @@
 // capturo elementos
-// const filters = document.querySelectorAll(".categories");
 const productsContainer = document.querySelector(".products-container");
 const showMoreBtn = document.querySelector(".add-load");
 
@@ -20,7 +19,6 @@ const navBarList = document.querySelector(".nav-bar");
 const cartBtn = document.querySelector(".cart-toggle");
 const cartMenu = document.querySelector(".cart");
 const main = document.querySelector(".main");
-const addBtn = document.querySelector(".btn-small");
 const productsCart = document.querySelector(".cart-container");
 
 const total = document.querySelector(".total");
@@ -127,14 +125,6 @@ const setShowMoreVisibility = () => {
 
 //obtengo la info que dejan en contacto
 let contactInfo = JSON.parse(localStorage.getItem("contactInfo")) || [];
-
-//obtengo la info de carrito
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-//guardo datos en LS
-const saveCart = () => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-};
 
 //funcion para hacer persistir la info en local storage
 const saveToLocalStorage = () =>{
@@ -252,11 +242,10 @@ const toggleMenu = () =>{
 };
 
 const closeOnScroll = () => {
-    if (!navBarList.classList.contains("open-menu") && !cartMenu.classList.contains("open-cart")){
+    if (!navBarList.classList.contains("open-menu")){
         return
     };
     navBarList.classList.remove("open-menu");
-    cartMenu.classList.remove("open-cart");
 };
 
 const closeOnClick = (e) =>{
@@ -276,29 +265,35 @@ const closeOnMainClick = (e) =>{
 
 //SEGUIR ACA
 
+//obtengo la info de carrito
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+//guardo datos en LS
+const saveCart = () => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+};
+
+
 const renderCart = () =>{
-    if(!cartMenu.length){
+    if(!cart.length){
         productsCart.innerHTML = `
         <p>No hay productos en el carrito</p>
         `;
         return;
     }
-    productsCart.innerHTML = cart.map(createCartProductTemplate).join("");
+    productsCart.innerHTML += cart
+        .map(createCartProductTemplate)
+        .join("");
 };
 
 const createCartProductTemplate = (cartProduct) =>{
     const { id, name, price, img, quantity } = cartProduct;
     return `
         <div class="cart-item">
-            <img src="${img}" alt="${name}">
+            <img src="${img}" alt="${id}">
             <div class="item-info">
                 <h3 class="item-title">${name}</h3>
                 <span class="item-price">U$D ${price}</span>
-            </div>
-            <div class="item-handler">
-                <span class="quantity-handler dowm" data-id=${id}>-</span>
-                <span class="item-quantity">${quantity}</span>
-                <span class="quantity-handler up" data-id=${id}>+</span>
             </div>
         </div>
     `
@@ -309,53 +304,45 @@ const showCartTotal = () =>{
 };
 
 const getCartTotal = () =>{
-    return cartProduct.reduce((acc, cur) => acc + cur.price);
+    return cart.reduce((acc, cur) => acc + Number(cur.price), 0);
 };
 
 const addProduct = (e) =>{
+    //si el evento cae fuera del boton de agregar, retorno sin cambio
     if(!e.target.classList.contains("btn-small")){return};
 
     const product = createProductData(e.target.dataset);
 
-    // si existe el producto en el carrito, retorno
-    if(isExistingCartProduct(product)){
-        return
-    };
-    
-    //sino, lo agrego
-    createCartProductTemplate(product);
+    // si el evento recae en el boton, agrego al carrito
+    //funcion para agregar producto
+    createCartProduct(product);
     //muestro mensaje de exito
     showSuccessCart("El producto se agregó al carrito");
     //actualizo el carrito
     updateCartState();
 };
 
+const showSuccessCart = (msg) =>{
+    alert(msg);
+};
+
 const createProductData = (product) =>{
     const { id, name, price, img } = product;
-    return { id, name, price, img }
+    return { id, name, price, img };
 };
 
-const isExistingCartProduct = (product) => {
-    return cart.find((item) => item.id === product.id);
-};
 
-const addUnitToProduct = (product) => {
-    cart = cart.map((cartProduct) =>
-        cartProduct.id === product.id
-            ? { ...cartProduct, quantity: cartProduct.quantity + 1 }
-            : cartProduct
-    );
+const createCartProduct = (product) =>{
+    cart = [...cart, {...product}];
 };
 
 const updateCartState = () =>{
     //guardar datos en LS
-    saveCart();
+    saveCart(cart);
     //renderizo el carrito
     renderCart();
     //muestro el total de la compra en precio
     showCartTotal();
-
-    
 
 };
 
@@ -378,6 +365,7 @@ const init = () => {
     navBarList.addEventListener("click", closeOnClick);
     main.addEventListener("click", closeOnMainClick);
     document.addEventListener("DOMContentLoaded", renderCart);
-    document.addEventListener("DOMContentLoaded", showCartTotal);
+    // document.addEventListener("DOMContentLoaded", showCartTotal);
+    productsContainer.addEventListener("click", addProduct);
 };
 init();
