@@ -102,7 +102,6 @@ nav {
     gap: 20px;
     height: calc(100vh - 80px);
     overflow-y: scroll;
-    /*display: none;*/
     z-index: 2;
     background: linear-gradient(to top, rgb(8, 8, 8), var(--primary));
     transform: translateY(-200%);
@@ -116,7 +115,7 @@ nav {
 .cart-container{
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 80%;
 }
 
 .cart-item{
@@ -152,6 +151,11 @@ nav {
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-size: 14px;
+}
+
+.item-price{
+    font-size: 13px;
 }
 
 .item-handler span{
@@ -168,6 +172,8 @@ nav {
 }
 
 .cart-total{
+    display: flex;
+    justify-content: space-between;
     border: 1px solid var(--btn-color);
     width: 100%;
     padding: 5px;
@@ -200,7 +206,6 @@ nav {
     text-align: center;
     border: 2px solid var(--btn-color);
     border-radius: 10px;
-    width: 80px;
     padding: 10px;
     font-size: 12px;
     color: var(--primary-text);
@@ -213,9 +218,7 @@ nav {
     justify-content: space-around;
     padding: 40px 50px;
     /* background: rgb(28, 28, 28); */
-    background: url(../img/puma_maniqui_1.png) no-repeat left/cover;
-    /* backdrop-filter: blur(10px) saturate(250%);
-    -webkit-backdrop-filter: blur(10px) saturate(250%); */
+    background: linear-gradient(to bottom, transparent, 85%, rgb(28, 28, 28)), url(../img/puma_maniqui_1.png) no-repeat left/cover;
     width: 100%;
     gap: 20px;
 }
@@ -349,6 +352,9 @@ nav {
 
 .categories{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
     gap: 15px;
 }
 
@@ -511,6 +517,24 @@ footer{
     height: 70px;
 }
 
+.add-msg{
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--primary-text);
+    background: rgba(63, 61, 61, 0.795) 100%;
+    backdrop-filter: blur(5px) saturate(180%);
+    -webkit-backdrop-filter: blur(5px) saturate(180%);
+    transition: all 0.5s ease-out;
+    transform: translateY(200%);
+    /* box-shadow: 0 7px 7px 0 rgb(85, 84, 84); */
+}
+
+.active-msg{
+    transform: translateY(0);
+    transition: all 0.5s ease-out;
+}
 
 /*estilos login*/
 

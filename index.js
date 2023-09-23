@@ -20,8 +20,11 @@ const cartBtn = document.querySelector(".cart-toggle");
 const cartMenu = document.querySelector(".cart");
 const main = document.querySelector(".main");
 const productsCart = document.querySelector(".cart-container");
+//const successModal = document.querySelector(".add-msg");
 
 const total = document.querySelector(".total");
+const buyBtn = document.querySelector(".btn-buy");
+const deleteBtn = document.querySelector(".btn-delete");
 
 
 
@@ -51,8 +54,9 @@ const createProductTemplate = (product) =>{
                     <span>U$D ${price}</span>
                 </div>
             </div>
-    </div>
-`
+            <div class="add-msg"></div>
+        </div>
+    `
 };
 
 //cargar productos en el render
@@ -263,7 +267,6 @@ const closeOnMainClick = (e) =>{
     cartMenu.classList.remove("open-cart");
 };
 
-//SEGUIR ACA
 
 //obtengo la info de carrito
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -326,6 +329,14 @@ const showSuccessCart = (msg) =>{
     alert(msg);
 };
 
+// const showSuccessCart = (msg) => {
+//     successModal.classList.add("active-msg");
+//     successModal.textContent = msg;
+//     setTimeout(() => {
+//         successModal.classList.remove("active-msg")
+//     }, 1500);
+// };
+
 const createProductData = (product) =>{
     const { id, name, price, img } = product;
     return { id, name, price, img };
@@ -336,6 +347,14 @@ const createCartProduct = (product) =>{
     cart = [...cart, {...product}];
 };
 
+const disableBtn = (btn) =>{
+    if(!cart.length){
+        btn.style.display = "none";
+    } else{
+        btn.style.display = "block";
+    }
+};
+
 const updateCartState = () =>{
     //guardar datos en LS
     saveCart(cart);
@@ -344,8 +363,35 @@ const updateCartState = () =>{
     //muestro el total de la compra en precio
     showCartTotal();
 
+    disableBtn(buyBtn);
+    disableBtn(deleteBtn);
+
 };
 
+const resetCartItems = () => {
+    cart = [];
+    updateCartState();
+};
+
+const completeCartAction = (confirmMsg, successMsg) => {
+    if (!cart.length) return; 
+    if (window.confirm(confirmMsg)) {
+        resetCartItems();
+        alert(successMsg);
+    }
+};
+
+const completeBuy = () => {
+    completeCartAction("¿Desea completar su compra?", "¡Gracias por su compra!");
+};
+
+
+const deleteCart = () => {
+    completeCartAction(
+        "¿Desea vaciar el carrito?",
+        "No hay productos en el carrito"
+    );
+};
 
 
 
@@ -365,7 +411,12 @@ const init = () => {
     navBarList.addEventListener("click", closeOnClick);
     main.addEventListener("click", closeOnMainClick);
     document.addEventListener("DOMContentLoaded", renderCart);
-    // document.addEventListener("DOMContentLoaded", showCartTotal);
+    document.addEventListener("DOMContentLoaded", showCartTotal);
     productsContainer.addEventListener("click", addProduct);
+    buyBtn.addEventListener("click", completeBuy);
+    deleteBtn.addEventListener("click", deleteCart);
+    disableBtn(buyBtn);
+    disableBtn(deleteBtn);
 };
+
 init();

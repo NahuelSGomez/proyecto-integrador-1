@@ -22,15 +22,12 @@
 
 /* SEGUIR ACA CON LA ANIMACION DE FLIPPING*/
 
-.card-container:hover{
+/* .card-container:hover{
     transform: rotateY(180deg);
     transform-style: preserve-3d;
     transition: 0.5s ease-in;
-}
-
-/* .nav-bar:hover a{
-    filter: blur(0px);
 } */
+
 
 .nav-bar a:hover{
     filter: drop-shadow(5px 3px 2px var(--primary-text));
