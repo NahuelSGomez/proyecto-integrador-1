@@ -87,7 +87,7 @@ const renderByCategory = ({ target }) =>{
         appState.currentProductsIndex = 0;
         return;
     }
-    renderProducts(appState.products[0]);
+    renderProducts(appState.products);
 };
 
 const renderFilteredProducts = () => {
@@ -98,7 +98,7 @@ const renderFilteredProducts = () => {
 };
 
 const isInactiveFilter = (element) =>{
-    return ( element.classList.contains("category") && !element.classList.contains("active"));
+    return (element.classList.contains("category") && !element.classList.contains("active"));
 };
 
 const changeFilterState = (btn) => {
