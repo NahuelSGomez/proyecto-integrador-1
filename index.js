@@ -70,6 +70,7 @@ const loadProducts = () =>{
     }
 };
 
+
 const renderProducts = (productsList) => {
     productsContainer.innerHTML += productsList
         .map(createProductTemplate)
@@ -89,17 +90,29 @@ const renderByCategory = ({ target }) =>{
         return;
     };
     renderProducts(appState.products[0]);
+
+};
+
+const allRenderProducts = ({ target }) =>{
+    
+    productsContainer.innerHTML= "";
+    if(target.dataset.category("Todos")){
+        appState.currentProductsIndex = 0;
+        return;
+    };
+    loadProducts();
+
 };
 
 const renderFilteredProducts = () => {
     const filteredProducts = productsData.filter(
         (product) => product.category === appState.activeFilter
-    );
-    renderProducts(filteredProducts);
-};
+        );
+        renderProducts(filteredProducts);
+    };
 
-const isInactiveFilter = (element) =>{
-    return (element.classList.contains("category") && !element.classList.contains("active"));
+    const isInactiveFilter = (element) =>{
+        return (element.classList.contains("category") && !element.classList.contains("active"));
 };
 
 const changeFilterState = (btn) => {
@@ -107,6 +120,8 @@ const changeFilterState = (btn) => {
     changeBtnActiveState(appState.activeFilter);
     setShowMoreVisibility();
 };
+
+
 
 const changeBtnActiveState = (selectedCategory) =>{
     const categories = [...categoriesList];

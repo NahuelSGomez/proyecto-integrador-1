@@ -236,7 +236,6 @@ nav {
 
 .hero-info h1{
     z-index: 1;
-    /* font-family: "Renegade Pursuit"; */
     font-size: 48px;
     font-weight: 900;
     width: 100%;
@@ -260,6 +259,7 @@ nav {
 .hero-img{
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .hero-img img{
@@ -414,6 +414,7 @@ nav {
     gap: 30px;
     border-radius: 15px;
     max-width: 300px;
+    max-height: 450px;
     gap: 20px;
 }
 
@@ -453,7 +454,7 @@ nav {
 
 .card-text-btn span{
     background: var(--background);
-    padding: 5px 10px;
+    padding: 5px;
     border-radius: 10px;
     border: 2px solid var(--btn-color);
 }

@@ -75,5 +75,6 @@ const appState = {
     products: divideProductsInParts(3), 
     currentProductsIndex: 0, 
     productsLimit: divideProductsInParts(3).length,
-    activeFilter: null
+    activeFilter: null,
+    allproducts: productsData.length
 };
