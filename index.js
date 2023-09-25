@@ -79,6 +79,7 @@ const renderProducts = (productsList) => {
 //filtrar renderizado por categorias
 const renderByCategory = ({ target }) =>{
     if (!isInactiveFilter( target )) return;
+    
     changeFilterState(target);
 
     productsContainer.innerHTML= "";
@@ -86,8 +87,8 @@ const renderByCategory = ({ target }) =>{
         renderFilteredProducts();
         appState.currentProductsIndex = 0;
         return;
-    }
-    renderProducts(appState.products);
+    };
+    renderProducts(appState.products[0]);
 };
 
 const renderFilteredProducts = () => {
@@ -329,13 +330,6 @@ const showSuccessCart = (msg) =>{
     alert(msg);
 };
 
-// const showSuccessCart = (msg) => {
-//     successModal.classList.add("active-msg");
-//     successModal.textContent = msg;
-//     setTimeout(() => {
-//         successModal.classList.remove("active-msg")
-//     }, 1500);
-// };
 
 const createProductData = (product) =>{
     const { id, name, price, img } = product;

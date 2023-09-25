@@ -113,6 +113,10 @@
     }
 
     /*Acerca*/
+.Nosotros{
+    padding: 30px;
+}
+
     .about-info h2{
         font-size: 40px;
     }
@@ -121,9 +125,6 @@
         font-size: 20px;
     }
 
-    .slider img{
-        max-width: 70%;
-    }
 
     .card-text-title{
         font-size: 20px;
