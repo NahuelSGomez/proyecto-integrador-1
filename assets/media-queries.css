@@ -113,9 +113,9 @@
     }
 
     /*Acerca*/
-.Nosotros{
-    padding: 30px;
-}
+    .Nosotros{
+        padding: 30px;
+    }
 
     .about-info h2{
         font-size: 40px;
@@ -158,10 +158,6 @@
     
     .about-info-bottom p{
         font-size: 20px;
-    }
-
-    .card-text{
-        max-width: 80%;
     }
 
     .contact-bottom span{

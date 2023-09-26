@@ -410,7 +410,6 @@ nav {
     background: radial-gradient(rgb(78, 77, 77), var(--background));
     border: 2px solid rgba(50, 50, 50, 0.493);
     padding: 30px 15px;
-    gap: 30px;
     border-radius: 15px;
     max-width: 300px;
     max-height: 450px;
@@ -508,7 +507,7 @@ nav {
     justify-content: center;
     align-items: center;
     padding: 5px;
-    gap: 10px;
+    margin: 10px;
 }
 
 
