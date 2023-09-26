@@ -216,7 +216,6 @@ nav {
     align-items: center;
     justify-content: space-around;
     padding: 40px 50px;
-    /* background: rgb(28, 28, 28); */
     background: linear-gradient(to bottom, transparent, 85%, rgb(28, 28, 28)), url(../img/puma_maniqui_1.png) no-repeat left/cover;
     width: 100%;
     gap: 20px;
@@ -266,7 +265,7 @@ nav {
     display: flex;
     justify-content: end;
     align-items: flex-end;
-    max-width: 90%;
+    max-width: 100%;
     filter: drop-shadow(15px 15px 15px black);
 }
 

@@ -71,6 +71,7 @@ const loadProducts = () =>{
 };
 
 
+
 const renderProducts = (productsList) => {
     productsContainer.innerHTML += productsList
         .map(createProductTemplate)
@@ -93,16 +94,6 @@ const renderByCategory = ({ target }) =>{
 
 };
 
-const allRenderProducts = ({ target }) =>{
-    
-    productsContainer.innerHTML= "";
-    if(target.dataset.category("Todos")){
-        appState.currentProductsIndex = 0;
-        return;
-    };
-    loadProducts();
-
-};
 
 const renderFilteredProducts = () => {
     const filteredProducts = productsData.filter(
