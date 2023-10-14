@@ -5,6 +5,19 @@ const showMoreBtn = document.querySelector(".add-load");
 const categoriesContainer = document.querySelector(".categories");
 const categoriesList = document.querySelectorAll(".category");
 
+//capturo elementos del carrito y menu hamburguesa
+const menuBtn = document.querySelector(".bars-menu");
+const navBarList = document.querySelector(".nav-bar");
+
+const cartBtn = document.querySelector(".cart-toggle");
+const cartMenu = document.querySelector(".cart");
+const main = document.querySelector(".main");
+const productsCart = document.querySelector(".cart-container");
+
+const total = document.querySelector(".total");
+const buyBtn = document.querySelector(".btn-buy");
+const deleteBtn = document.querySelector(".btn-delete");
+
 // elementos del form
 const form = document.getElementById("formulario-contacto");
 const nameInput = document.getElementById("name");
@@ -13,18 +26,6 @@ const emailInput = document.getElementById("email");
 const message = document.getElementById("message");
 const confirmedMsg = document.getElementById("mensaje-confirmacion");
 
-//capturo elementos del carrito y menu hamburguesa
-const menuBtn = document.querySelector(".bars-menu");
-const navBarList = document.querySelector(".nav-bar");
-const cartBtn = document.querySelector(".cart-toggle");
-const cartMenu = document.querySelector(".cart");
-const main = document.querySelector(".main");
-const productsCart = document.querySelector(".cart-container");
-//const successModal = document.querySelector(".add-msg");
-
-const total = document.querySelector(".total");
-const buyBtn = document.querySelector(".btn-buy");
-const deleteBtn = document.querySelector(".btn-delete");
 
 
 
@@ -50,7 +51,6 @@ const createProductTemplate = (product) =>{
                     data-category='${category}'
                     ><i class="fa-solid fa-cart-shopping"></i>
                     </button>
-                    <a href="#" class="btn-secondary">Más info</a>
                     <span>U$D ${price}</span>
                 </div>
             </div>
@@ -61,15 +61,16 @@ const createProductTemplate = (product) =>{
 
 //cargar productos en el render
 const loadProducts = () =>{
-    appState.currentProductsIndex += 1;
+    appState.currentProductsIndex = appState.currentProductsIndex + 1;
+    
     let {products, currentProductsIndex} = appState;
+    
     renderProducts(products[currentProductsIndex]);
 
     if(appState.currentProductsIndex === appState.productsLimit - 1){
         showMoreBtn.style.display = "none";
-    }
+    };
 };
-
 
 
 const renderProducts = (productsList) => {
@@ -77,6 +78,7 @@ const renderProducts = (productsList) => {
         .map(createProductTemplate)
         .join("");
 };
+
 
 //filtrar renderizado por categorias
 const renderByCategory = ({ target }) =>{
@@ -89,9 +91,11 @@ const renderByCategory = ({ target }) =>{
         renderFilteredProducts();
         appState.currentProductsIndex = 0;
         return;
-    };
-    renderProducts(appState.products[0]);
-
+    } else if (isInactiveFilter()){
+        renderProducts();
+        appState.currentProductsIndex = 0;
+        return;
+    }
 };
 
 
@@ -100,9 +104,9 @@ const renderFilteredProducts = () => {
         (product) => product.category === appState.activeFilter
         );
         renderProducts(filteredProducts);
-    };
+};
 
-    const isInactiveFilter = (element) =>{
+const isInactiveFilter = (element) =>{
         return (element.classList.contains("category") && !element.classList.contains("active"));
 };
 
@@ -291,6 +295,9 @@ const renderCart = () =>{
         `;
         return;
     }
+    
+    productsCart.innerHTML = "";
+
     productsCart.innerHTML += cart
         .map(createCartProductTemplate)
         .join("");
@@ -319,17 +326,19 @@ const getCartTotal = () =>{
 
 const addProduct = (e) =>{
     //si el evento cae fuera del boton de agregar, retorno sin cambio
-    if(!e.target.classList.contains("btn-small")){return};
+    if(!e.target.classList.contains("btn-small")){
+        return
+    } else if (e.target.classList.contains("btn-small")){
 
-    const product = createProductData(e.target.dataset);
-
-    // si el evento recae en el boton, agrego al carrito
-    //funcion para agregar producto
-    createCartProduct(product);
-    //muestro mensaje de exito
-    showSuccessCart("El producto se agregó al carrito");
-    //actualizo el carrito
-    updateCartState();
+        const product = createProductData(e.target.dataset);
+        // si el evento recae en el boton, agrego al carrito
+        //funcion para agregar producto
+        createCartProduct(product);
+        //muestro mensaje de exito
+        showSuccessCart("El producto se agregó al carrito");
+        //actualizo el carrito
+        updateCartState();
+    }
 };
 
 const showSuccessCart = (msg) =>{
@@ -384,7 +393,6 @@ const completeCartAction = (confirmMsg, successMsg) => {
 const completeBuy = () => {
     completeCartAction("¿Desea completar su compra?", "¡Gracias por su compra!");
 };
-
 
 const deleteCart = () => {
     completeCartAction(
