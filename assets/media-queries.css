@@ -110,6 +110,7 @@
 
     .hero-info p{
         font-size: 20px;
+        width: 80%;
     }
 
     /*Acerca*/
@@ -124,7 +125,6 @@
     .about-info p{
         font-size: 20px;
     }
-
 
     .card-text-title{
         font-size: 20px;

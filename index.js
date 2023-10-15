@@ -49,8 +49,7 @@ const createProductTemplate = (product) =>{
                     data-name='${name}'
                     data-img='${img}'
                     data-category='${category}'
-                    ><i class="fa-solid fa-cart-shopping"></i>
-                    </button>
+                    >Agregar al carrito</i></button>
                     <span>U$D ${price}</span>
                 </div>
             </div>
@@ -71,7 +70,6 @@ const loadProducts = () =>{
         showMoreBtn.style.display = "none";
     };
 };
-
 
 const renderProducts = (productsList) => {
     productsContainer.innerHTML += productsList
@@ -297,10 +295,16 @@ const renderCart = () =>{
     }
     
     productsCart.innerHTML = "";
-
+    
     productsCart.innerHTML += cart
-        .map(createCartProductTemplate)
-        .join("");
+    .map(createCartProductTemplate)
+    .join("");
+    
+    // if (existInCart()) {
+    //     showMsgCart("El producto ya ha sido agregado al carrito");
+    //     return;
+    // }
+
 };
 
 const createCartProductTemplate = (cartProduct) =>{
@@ -325,23 +329,37 @@ const getCartTotal = () =>{
 };
 
 const addProduct = (e) =>{
+    
     //si el evento cae fuera del boton de agregar, retorno sin cambio
-    if(!e.target.classList.contains("btn-small") && !e.target.classList.contains("btn")){
+    if(!e.target.classList.contains("btn-small") && !e.target.classList.contains("fa-cart-plus")){
         return;
-    } else if (e.target.classList.contains("btn-small")){
-
-        const product = createProductData(e.target.dataset);
-        // si el evento recae en el boton, agrego al carrito
-        //funcion para agregar producto
-        createCartProduct(product);
-        //muestro mensaje de exito
-        showSuccessCart("El producto se agregó al carrito");
-        //actualizo el carrito
-        updateCartState();
     }
+    
+    // else if (existInCart){
+    //     showMsgCart("El producto ya ha sido agregado al carrito");
+    //     return;
+    // }
+    
+    const product = createProductData(e.target.dataset);
+    // si el evento recae en el boton, agrego al carrito
+    //funcion para agregar producto
+    createCartProduct(product);
+    //muestro mensaje de exito
+    showMsgCart("El producto se agregó al carrito");
+    //actualizo el carrito
+    updateCartState();
+    
+
 };
 
-const showSuccessCart = (msg) =>{
+//como son diseños y no productos en si, dar aviso si el producto ya esta en el carrito, para no agregar mas de un producto de cada uno
+const existInCart = (e) => {
+    return productsCart.some((product) => {
+        return product.id === e.target.parentElement.querySelector(".card").dataset.id;
+    })
+};
+
+const showMsgCart = (msg) =>{
     alert(msg);
 };
 
