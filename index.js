@@ -107,7 +107,7 @@ const renderFilteredProducts = () => {
 };
 
 const isInactiveFilter = (element) =>{
-        return (element.classList.contains("category") && !element.classList.contains("active"));
+    return (element.classList.contains("category") && !element.classList.contains("active"));
 };
 
 const changeFilterState = (btn) => {
@@ -304,7 +304,7 @@ const renderCart = () =>{
 };
 
 const createCartProductTemplate = (cartProduct) =>{
-    const { id, name, price, img, quantity } = cartProduct;
+    const { id, name, price, img } = cartProduct;
     return `
         <div class="cart-item">
             <img src="${img}" alt="${id}">
@@ -326,8 +326,8 @@ const getCartTotal = () =>{
 
 const addProduct = (e) =>{
     //si el evento cae fuera del boton de agregar, retorno sin cambio
-    if(!e.target.classList.contains("btn-small")){
-        return
+    if(!e.target.classList.contains("btn-small") && !e.target.classList.contains("btn")){
+        return;
     } else if (e.target.classList.contains("btn-small")){
 
         const product = createProductData(e.target.dataset);
@@ -420,7 +420,7 @@ const init = () => {
     main.addEventListener("click", closeOnMainClick);
     document.addEventListener("DOMContentLoaded", renderCart);
     document.addEventListener("DOMContentLoaded", showCartTotal);
-    productsContainer.addEventListener("click", addProduct);
+    document.addEventListener("click", addProduct);
     buyBtn.addEventListener("click", completeBuy);
     deleteBtn.addEventListener("click", deleteCart);
     disableBtn(buyBtn);
