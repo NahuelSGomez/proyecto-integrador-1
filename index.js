@@ -335,28 +335,27 @@ const addProduct = (e) =>{
         return;
     }
     
-    // else if (existInCart){
-    //     showMsgCart("El producto ya ha sido agregado al carrito");
-    //     return;
-    // }
-    
     const product = createProductData(e.target.dataset);
-    // si el evento recae en el boton, agrego al carrito
-    //funcion para agregar producto
-    createCartProduct(product);
-    //muestro mensaje de exito
-    showMsgCart("El producto se agregó al carrito");
-    //actualizo el carrito
+    
+    if(existInCart(product)){
+        showMsgCart("El producto ya ha sido agregado al carrito")
+        return;
+    } else {
+        // si el evento recae en el boton, agrego al carrito
+        //funcion para agregar producto
+        createCartProduct(product);
+        //muestro mensaje de exito
+        showMsgCart("El producto se agregó al carrito");
+        //actualizo el carrito
+    }
+    
     updateCartState();
     
-
 };
 
 //como son diseños y no productos en si, dar aviso si el producto ya esta en el carrito, para no agregar mas de un producto de cada uno
-const existInCart = (e) => {
-    return productsCart.some((product) => {
-        return product.id === e.target.parentElement.querySelector(".card").dataset.id;
-    })
+const existInCart = (product) => {
+    return cart.find((item) => item.id === product.id);
 };
 
 const showMsgCart = (msg) =>{
