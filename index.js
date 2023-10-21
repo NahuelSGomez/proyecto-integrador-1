@@ -89,13 +89,18 @@ const renderByCategory = ({ target }) =>{
         renderFilteredProducts();
         appState.currentProductsIndex = 0;
         return;
-    } else if (isInactiveFilter()){
-        renderProducts();
-        appState.currentProductsIndex = 0;
+    } 
+
+    if(isInactiveFilter( target )){
+        renderAllProducts();
         return;
     }
 };
 
+const renderAllProducts = () => {
+    appState.currentProductsIndex = 0;
+    loadProducts();
+};
 
 const renderFilteredProducts = () => {
     const filteredProducts = productsData.filter(
